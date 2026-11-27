@@ -1,1 +1,1 @@
-"""Lab 4: Client-server TCP sockets with framing."""
+"""Lab 4: Image dataset analysis and visualization with pandas and matplotlib."""
