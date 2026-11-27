@@ -23,6 +23,17 @@ mypy src
 ruff check .
 ```
 
+Если PowerShell блокирует `Activate.ps1` (`PSSecurityException`), разрешите скрипты один раз:
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+.\.venv\Scripts\Activate.ps1
+```
+Либо запускайте без активации напрямую через Python из `.venv`:
+```powershell
+.\.venv\Scripts\python -m pip install -r requirements.txt
+.\.venv\Scripts\python -m pytest
+```
+
 ## Пример запуска
 
 ```powershell
