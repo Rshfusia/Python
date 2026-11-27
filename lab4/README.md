@@ -28,14 +28,24 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
 Либо без активации: `.\.venv\Scripts\python -m pip install -r requirements.txt` и `.\.venv\Scripts\python -m pytest`.
 
-## Пример запуска
+## Куда положить данные и как запустить
+
+1. Создайте папку `lab4/dataset/` и положите туда изображения из 2-й лабораторной (не внутрь `src/lab4/`).
+2. Если есть CSV-аннотация из 2-й лабораторной, положите её в `lab4/annotations.csv`.
 
 ```powershell
+# В папке lab4 (с активированным .venv):
 $env:PYTHONPATH="src"
 
-# Вариант 1: по CSV-аннотации из 2-й лабы
-python -m lab4.main --annotation annotations.csv --output-csv result.csv --output-plot hist.png --min-length 100 --max-length 500
+# Запуск по папке с фото:
+python -m lab4.main --images-dir dataset --output-csv result.csv --output-plot hist.png --min-length 100 --max-length 500
 
-# Вариант 2: напрямую по папке с изображениями
-python -m lab4.main --images-dir dataset --output-csv result.csv --output-plot hist.png
+# Или запуск по CSV-аннотации из 2-й лабы:
+python -m lab4.main --annotation annotations.csv --output-csv result.csv --output-plot hist.png --min-length 100 --max-length 500
+```
+
+Если `.venv` не активирован, замените `python` на `.\.venv\Scripts\python`:
+```powershell
+$env:PYTHONPATH="src"
+.\.venv\Scripts\python -m lab4.main --images-dir dataset --output-csv result.csv --output-plot hist.png
 ```
